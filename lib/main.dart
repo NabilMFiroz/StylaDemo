@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:styla_designs/chip_list.dart';
+import 'package:styla_designs/expanmenu.dart';
 import 'package:styla_designs/mychips.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -121,7 +123,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(
                   height: 100,
                   color: Colors.red,
-                ))
+                )),
+            Container(
+              color: Colors.green,
+              height: 100,
+              child: ExpandMenu(),
+            ),
+            Container(
+              child: RatingBarIndicator(
+                rating: 2.7,
+                itemBuilder: (context, index) => Icon(Icons.star),
+                itemCount: 5,
+                itemSize: 50,
+                direction: Axis.horizontal,
+              ),
+            )
           ],
         ),
       ),
@@ -142,14 +158,21 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (context) => AlertDialog(
             title: Text('Search'),
-            content: Container(
-              height: 300,
-              child: Column(
-                children: [
-                  TextField(),
-                  Text('hello'),
-                  Chip(label: Text('hey'))
-                ],
+            content: SingleChildScrollView(
+              child: Container(
+                height: 300,
+                child: Column(
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ExpandMenu(),
+
+                        ///ExpandMenu(),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ));
